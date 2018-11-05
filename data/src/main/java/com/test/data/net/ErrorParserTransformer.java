@@ -1,7 +1,5 @@
 package com.test.data.net;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.test.domain.entity.Error;
 import com.test.domain.entity.ErrorType;
 
@@ -11,17 +9,10 @@ import java.net.SocketTimeoutException;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import retrofit2.HttpException;
 
 public class ErrorParserTransformer<S> {
-
-    private Gson gson;
-
-    public ErrorParserTransformer(Gson gson) {
-        this.gson = gson;
-    }
 
     public <T, E extends Throwable> ObservableTransformer<T, T> parseHttpError() {
 
@@ -38,21 +29,20 @@ public class ErrorParserTransformer<S> {
                                 if (throwable instanceof HttpException) {
                                     HttpException httpException = (HttpException) throwable;
 
-                                    error = new Error(throwable.getMessage(), ErrorType.SERVER_ERROR);
+                                    error = new Error("Unexpected error", ErrorType.UNEXPECTED_ERROR);
 
                                     try {
                                         if (httpException.response().errorBody().string().contains("login-already")) {
                                             error = new Error("Данный email занят",
                                                     ErrorType.VALID_ERROR);
-                                        } else if (httpException.response().errorBody().string().contains("login")) {
+                                        } else if (httpException.response().errorBody().string().contains("valid")) {
                                             error = new Error("Ошибка в имени email(a)",
                                                     ErrorType.VALID_ERROR);
                                         }
                                     } catch (IOException e) {
-                                        if (httpException.code() == 400) {
                                             error = new Error("Ошибка, попробуйте еще раз",
                                                     ErrorType.VALID_ERROR);
-                                        }
+
                                     }
 
                                 } else if (throwable instanceof SocketTimeoutException) {

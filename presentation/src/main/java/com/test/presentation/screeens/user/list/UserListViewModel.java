@@ -3,15 +3,11 @@ package com.test.presentation.screeens.user.list;
 import android.content.Context;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
-import android.inputmethodservice.Keyboard;
-import android.test.com.testproject.R;
 import android.util.Log;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
+import android.view.inputmethod.InputMethodManager;
 
 import com.test.app.App;
-import com.test.domain.entity.Error;
-import com.test.domain.entity.ErrorType;
 import com.test.domain.entity.User;
 import com.test.domain.usecases.UserRegistUseCase;
 import com.test.presentation.base.BaseViewModel;
@@ -86,7 +82,9 @@ public class UserListViewModel extends BaseViewModel<UserListRouter, User> imple
 
                     @Override
                     public void onError(Throwable e) {
-
+                        if (!e.getMessage().contains("Attempt")) {
+                            router.setErrorEmail(e.getMessage());
+                        }
                     }
 
                     @Override
@@ -100,6 +98,7 @@ public class UserListViewModel extends BaseViewModel<UserListRouter, User> imple
     public void onClickButtonRegist() {
         peopleProgress.set(View.VISIBLE);
         router.login(email.get(), password.get(), this);
+        router.closeKeyboard();
     }
 
 

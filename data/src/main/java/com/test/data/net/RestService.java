@@ -61,7 +61,7 @@ public class RestService {
                 .build()
                 .create(RestApi.class);
 
-        errorParserTransformer = new ErrorParserTransformer(gson);
+        errorParserTransformer = new ErrorParserTransformer();
     }
 
     public Observable<UserResponse> registUser(UserRegist userRegist) {

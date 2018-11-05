@@ -22,6 +22,10 @@ public class UserListRouter extends BaseRouter<UserListActivity> {
         activity.setErrorPassword(errorPassword);
     }
 
+    public void closeKeyboard() {
+      activity.closeKeyboard();
+    }
+
 
     public void login(final String email, final String password, final OnLoginFinishedListener listener) {
         // Mock login. I'm creating a handler to delay the answer a couple of seconds
