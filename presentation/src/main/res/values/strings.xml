@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">BalinaSoft</string>
+
+    <string name="email_text">Email</string>
+    <string name="hint_email">введите email</string>
+    <string name="password_text">Пароль</string>
+    <string name="hint_password">введите пароль</string>
+
+    <string name="email_empty">Ввердите email</string>
+    <string name="email_not_correct">Ввердите верный email</string>
+    <string name="email_start_dog">Введите имя email(a)</string>
+    <string name="email_end_dog">Введите почтовый домен</string>
+    <string name="email_empty_dog">Отсутствует @</string>
+    <string name="password_empty">Ввердите пароль</string>
+    <string name="password_long">Введите пароль от 8 до 20 символов</string>
+
+    <string name="bt_registry">Регистрация</string>
+
+    <string name="error_internet_not_available">Интернет не доступен</string>
+    <string name="error_server_not_available">Сервер не доступен</string>
+    <string name="error_server">Серверная ошибка</string>
+    <string name="toolbar_title">Contacts</string>
+    <string name="error">Непредвиденная ошибка</string>
+</resources>
