@@ -11,6 +11,7 @@
     <string name="email_start_dog">Введите имя email(a)</string>
     <string name="email_end_dog">Введите почтовый домен</string>
     <string name="email_empty_dog">Отсутствует @</string>
+    <string name="email_domain_error">Неверное имя домена</string>
     <string name="password_empty">Ввердите пароль</string>
     <string name="password_long">Введите пароль от 8 до 20 символов</string>
 

@@ -29,13 +29,13 @@ public class ErrorParserTransformer<S> {
                                 if (throwable instanceof HttpException) {
                                     HttpException httpException = (HttpException) throwable;
 
-                                    error = new Error("Unexpected error", ErrorType.UNEXPECTED_ERROR);
+                                    error = new Error("Ошибка, попробуйте еще раз", ErrorType.UNEXPECTED_ERROR);
 
                                     try {
                                         if (httpException.response().errorBody().string().contains("login-already")) {
                                             error = new Error("Данный email занят",
                                                     ErrorType.VALID_ERROR);
-                                        } else if (httpException.response().errorBody().string().contains("valid")) {
+                                        } else if (httpException.response().errorBody().string().contains("validation-error")) {
                                             error = new Error("Ошибка в имени email(a)",
                                                     ErrorType.VALID_ERROR);
                                         }

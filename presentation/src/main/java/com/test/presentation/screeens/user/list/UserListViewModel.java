@@ -3,6 +3,9 @@ package com.test.presentation.screeens.user.list;
 import android.content.Context;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
+import android.os.Handler;
+import android.test.com.testproject.R;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -97,7 +100,7 @@ public class UserListViewModel extends BaseViewModel<UserListRouter, User> imple
 
     public void onClickButtonRegist() {
         peopleProgress.set(View.VISIBLE);
-        router.login(email.get(), password.get(), this);
+        login(email.get(), password.get(), this);
         router.closeKeyboard();
     }
 
@@ -119,6 +122,79 @@ public class UserListViewModel extends BaseViewModel<UserListRouter, User> imple
             }
         }
         return list;
+    }
+
+
+    private void login(final String email, final String password, final OnLoginFinishedListener listener) {
+        // Mock login. I'm creating a handler to delay the answer a couple of seconds
+        new Handler().postDelayed(() -> {
+            //validation email
+            if (TextUtils.isEmpty(email)) {
+                listener.onEmailError(R.string.email_empty);
+                return;
+            }
+
+            if (!email.isEmpty()) {
+                if (email.startsWith("@")) {
+                    listener.onEmailError(R.string.email_start_dog);
+                    return;
+                }
+            }
+
+            if (!email.isEmpty()) {
+                if (email.endsWith("@")) {
+                    listener.onEmailError(R.string.email_end_dog);
+                    return;
+                }
+            }
+
+            if (!email.isEmpty()) {
+                if (!email.contains("@")) {
+                    listener.onEmailError(R.string.email_empty_dog);
+                    return;
+                }
+            }
+
+            if (!email.isEmpty()) {
+                String simDog = "@";
+                char chSim = simDog.charAt(0);
+                int count = 0;
+                for (int i = 0; i < email.length(); i++) {
+                    if (email.charAt(i) == chSim) {
+                        count++;
+                    }
+                    if (count >= 2) {
+                        listener.onEmailError(R.string.email_not_correct);
+                        return;
+                    }
+                }
+            }
+
+            if (!email.isEmpty()) {
+                String[] splitEmail = email.split("@", email.length());
+                for (int i = 0; i < domain.size(); i++) {
+                    if (domain.get(i).equals(splitEmail[1])) {
+                        break;
+                    } else if (i >= domain.size() - 1 && !domain.get(i).equals(splitEmail[1])) {
+                        listener.onEmailError(R.string.email_domain_error);
+                        return;
+                    }
+                }
+            }
+
+
+            //validation password
+            if (TextUtils.isEmpty(password)) {
+                listener.onPasswordError(R.string.password_empty);
+                return;
+            }
+            if (password.length() > 20 || password.length() < 8) {
+                listener.onPasswordError(R.string.password_long);
+                return;
+            }
+
+            listener.onSuccess(email, password);
+        }, 2000);
     }
 
 }
