@@ -194,7 +194,7 @@ public class UserListViewModel extends BaseViewModel<UserListRouter, User> imple
             }
 
             listener.onSuccess(email, password);
-        }, 2000);
+        }, 1000);
     }
 
 }

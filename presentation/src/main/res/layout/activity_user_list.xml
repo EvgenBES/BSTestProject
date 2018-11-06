@@ -12,146 +12,134 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg"
         android:orientation="vertical"
-        android:background="@drawable/bg">
+        android:paddingTop="100dp">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="100dp"
+            android:scaleType="center"
+            android:src="@drawable/logo" />
+
+
+        <TextView
+            android:id="@+id/emailText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/helvetica_neue_cyr_roman"
+            android:lineHeight="16sp"
+            android:text="@string/email_text"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+
+
+        <android.support.v7.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/helvetica_neue_cyr_medium"
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress"
+            android:lineHeight="16sp"
+            android:paddingBottom="25dp"
+            android:singleLine="true"
+            android:text="@={viewModel.email}"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorAccent"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/passwordText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/helvetica_neue_cyr_roman"
+            android:lineHeight="14sp"
+            android:text="@string/password_text"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/button"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="300dp"
-                    android:scaleType="center"
-                    android:src="@drawable/logo" />
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/helvetica_neue_cyr_medium"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:lineHeight="16sp"
+                android:maxLength="20"
+                android:paddingBottom="25dp"
+                android:singleLine="true"
+                android:text="@={viewModel.password}"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/emailText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/email"
-                    android:layout_alignStart="@+id/email"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="20dp"
-                    android:fontFamily="@font/helvetica_neue_cyr_roman"
-                    android:lineHeight="16sp"
-                    android:text="@string/email_text"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="14sp" />
-
-
-                <android.support.v7.widget.AppCompatAutoCompleteTextView
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_above="@+id/passwordText"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="16dp"
-                    android:fontFamily="@font/helvetica_neue_cyr_medium"
-                    android:hint="@string/hint_email"
-                    android:inputType="textEmailAddress"
-                    android:text="@={viewModel.email}"
-                    android:lineHeight="16sp"
-                    android:singleLine="true"
-                    android:textColor="@color/colorWhite"
-                    android:textColorHint="@color/colorAccent"
-                    android:textSize="14sp" />
-
-
-                <TextView
-                    android:id="@+id/passwordText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/password"
-                    android:layout_alignStart="@+id/password"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="20dp"
-                    android:fontFamily="@font/helvetica_neue_cyr_roman"
-                    android:lineHeight="14sp"
-                    android:text="@string/password_text"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="16sp" />
-
-
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_above="@+id/button"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="30dp"
-                    android:fontFamily="@font/helvetica_neue_cyr_medium"
-                    android:hint="@string/hint_password"
-                    android:inputType="textPassword"
-                    android:text="@={viewModel.password}"
-                    android:lineHeight="16sp"
-                    android:maxLength="20"
-                    android:singleLine="true"
-                    android:textColor="@color/colorWhite"
-                    android:textColorHint="@color/colorAccent"
-                    android:textSize="14sp" />
-
-                <CheckBox
-                    android:id="@+id/checkActive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/password"
-                    android:layout_alignEnd="@+id/password"
-                    android:layout_alignBottom="@+id/password"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:button="@drawable/check_active"
-                    android:checked="false"
-                    android:clickable="true"
-                    android:focusable="true" />
-
-
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="100dp"
-                    android:background="@drawable/border_button"
-                    android:fontFamily="@font/helvetica_neue_cyr_medium"
-                    android:text="@string/bt_registry"
-                    android:textAllCaps="false"
-                    android:onClick="@{() -> viewModel.onClickButtonRegist()}"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="16sp" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="25dp"
-                    android:gravity="center_horizontal">
-
-                    <ProgressBar
-                        android:id="@+id/progress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="@{viewModel.peopleProgress}" />
-
-                </LinearLayout>
-
-
-
-
-
+            <CheckBox
+                android:id="@+id/checkActive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/password"
+                android:layout_alignEnd="@+id/password"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:button="@drawable/check_active"
+                android:checked="false"
+                android:clickable="true"
+                android:focusable="true" />
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/border_button"
+            android:fontFamily="@font/helvetica_neue_cyr_medium"
+            android:onClick="@{() -> viewModel.onClickButtonRegist()}"
+            android:text="@string/bt_registry"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:paddingTop="25dp">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.peopleProgress}" />
+        </LinearLayout>
 
     </LinearLayout>
 

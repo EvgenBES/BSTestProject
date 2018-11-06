@@ -35,13 +35,13 @@ public class ErrorParserTransformer<S> {
                                         if (httpException.response().errorBody().string().contains("login-already")) {
                                             error = new Error("Данный email занят",
                                                     ErrorType.VALID_ERROR);
-                                        } else if (httpException.response().errorBody().string().contains("validation-error")) {
+                                        } else if (httpException.response().errorBody().string().contains("valid")) {
                                             error = new Error("Ошибка в имени email(a)",
                                                     ErrorType.VALID_ERROR);
                                         }
                                     } catch (IOException e) {
-                                            error = new Error("Ошибка, попробуйте еще раз",
-                                                    ErrorType.VALID_ERROR);
+                                        error = new Error("Ошибка, попробуйте еще раз.",
+                                                ErrorType.VALID_ERROR);
 
                                     }
 
